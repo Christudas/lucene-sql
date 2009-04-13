@@ -1,33 +1,30 @@
-========================
-BUILD OUTPUT DESCRIPTION
-========================
+LSql 0.9
+By: Jonathan Esposito
+March 16, 2009
 
-When you build an Java application project that has a main class, the IDE
-automatically copies all of the JAR
-files on the projects classpath to your projects dist/lib folder. The IDE
-also adds each of the JAR files to the Class-Path element in the application
-JAR files manifest file (MANIFEST.MF).
+Lucene is a java utility that allows the user to execute SQL-like commands 
+against the repository.  Lsql currently supports SELECT, UPDATE, ADD,
+INSERT, and DELETE.
 
-To run the project from the command line, go to the dist folder and
-type the following:
+You can quickly get started by using this command:
+java -jar lsql.jar -x
 
-java -jar "LSql.jar" 
+COMMAND OPTIONS
+   -v Will verobsely print messages
+   -i The location of the Lucene index
+   -c The Lucene query that will retrieve the documents to be updated, added, etc.
 
-To distribute this project, zip up the dist folder (including the lib folder)
-and distribute the ZIP file.
+HOW TO USE LSQL
 
-Notes:
+1. To SELECT a field
+   java -jar lsql.jar -v -i c:\INDEXLOCATION -c "SELECT field1='value' WHERE +field1:value"
+   java -jar lsql.jar -v -i c:\INDEXLOCATION -c "SELECT * WHERE +field1:value"
 
-* If two JAR files on the project classpath have the same name, only the first
-JAR file is copied to the lib folder.
-* Only JAR files are copied to the lib folder.
-If the classpath contains other types of files or folders, none of the
-classpath elements are copied to the lib folder. In such a case,
-you need to copy the classpath elements to the lib folder manually after the build.
-* If a library on the projects classpath also has a Class-Path element
-specified in the manifest,the content of the Class-Path element has to be on
-the projects runtime path.
-* To set a main class in a standard Java project, right-click the project node
-in the Projects window and choose Properties. Then click Run and enter the
-class name in the Main Class field. Alternatively, you can manually type the
-class name in the manifest Main-Class element.
+2. To UPDATE a field
+   java -jar lsql.jar -v -i c:\INDEXLOCATION -c "UPDATE field1='newvalue', field2='newvalue' WHERE +field1:oldvalue" 
+
+3. To ADD a field
+   java -jar lsql.jar -v -i c:\INDEXLOCATION -c " ADD newfield1='newvalue' WHERE +field1:value" 
+
+4. To ADD a field
+   java -jar lsql.jarl -v -i c:\INDEXLOCATION -c " ADD newfield1='newvalue' WHERE +field1:value" 
